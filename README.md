@@ -22,9 +22,9 @@ Jupiter is an open autonomous robot based on Atmel 8-bit microcontroler Atmega8.
 
 # Jupiter v0.1 first prototype (only for sumbodules tests)
 
-![v0.1](https://github.com/Regalis/jupiter-avr-robot/raw/master/data/jupiter-prototype-v0.1/jupiter-v0.1-0.jpg)
-![v0.1](https://github.com/Regalis/jupiter-avr-robot/raw/master/data/jupiter-prototype-v0.1/jupiter-v0.1-1.jpg)
-![v0.1](https://github.com/Regalis/jupiter-avr-robot/raw/master/data/jupiter-prototype-v0.1/jupiter-v0.1-2.jpg)
+![v0.1](https://raw.github.com/Regalis/avr-mobile-robot/master/data/jupiter-prototype-v0.1/jupiter-v0.1-0.jpg)
+![v0.1](https://raw.github.com/Regalis/avr-mobile-robot/master/data/jupiter-prototype-v0.1/jupiter-v0.1-1.jpg)
+![v0.1](https://raw.github.com/Regalis/avr-mobile-robot/master/data/jupiter-prototype-v0.1/jupiter-v0.1-2.jpg)
 
 License
 =======
