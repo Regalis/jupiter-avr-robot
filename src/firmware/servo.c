@@ -24,21 +24,27 @@
 #include "utils.h"
 
 inline void servo_init() {
-	TCCR1A = 0;
-	// PB1 as output
-	DDRB |= _BV(PB1);
+	// PB1 and PB2 as output
+	DDRB |= _BV(PB1) | _BV(PB2);
 	// Phase and Frequency correct, TOP at ICR1
 	TCCR1B |= _BV(WGM13);
-	// Non-inverted mode
+	// Non-inverted mode for OC1 and OC2
 	TCCR1A |= _BV(COM1A1);
+	TCCR1A |= _BV(COM1B1);
 	// 50Hz
 	ICR1 = 10000;
 	// 8x prescaler
 	TCCR1B |= _BV(CS11);
+	OCR1A = 0;
+	OCR1B = 0;
 }
 
-void servo_set(uint8_t angle) {
+void servo_set(uint8_t servo_select, uint8_t angle) {
 	// pulse width ~540us to 2400us
-	OCR1A = map(angle, 0, 180, 256, 1200);
+	long angle_value = map(angle, 0, 180, 256, 1200);
+	if (servo_select & SERVO1) 
+		OCR1A = angle_value;
+	if (servo_select & SERVO2)
+		OCR1B = angle_value;
 }
 

@@ -22,9 +22,9 @@
 
 /** Init servo
  * Servo must be connected to specified pins:
- * PB1 - servo control line
+ * PB1, PB2 - servo's control line
  * WARNING, this function will configure
- * Timer/Counter0:
+ * 16-bit Timer/Counter1:
  *  Frequency: 50Hz
  *  Mode: Phase and Frequency correct
  *  Prescaler: 8x
@@ -32,6 +32,10 @@
 void servo_init();
 
 /** Set servo angle:
+ * @param servo_select select servro (SERVO1 or/and SERVO2)
  * @param angle value from range 0-180
  */
-void servo_set(uint8_t angle);
+void servo_set(uint8_t servo_select, uint8_t angle);
+
+#define SERVO1 0x0F
+#define SERVO2 0xF0
