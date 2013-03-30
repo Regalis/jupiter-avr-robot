@@ -23,6 +23,7 @@
 #include <util/delay.h>
 
 #include "engines.h"
+#include "utils.h"
 
 #define ENGINE_LEFT_I1_DDR DDRB
 #define ENGINE_LEFT_I1_PORT PORTB
@@ -39,10 +40,18 @@
 #define ENGINE_RIGHT_I2_PIN 5
 
 void engine_init() {
+	DDRB |= _BV(PB3);
+	// set speed to 0
+	OCR2 = 0x00;
+	// Phase correct mode, non inverting mode
+	// 64x prescaler (244Hz)
+	TCCR2 |= _BV(WGM20) | _BV(COM21) | _BV(CS22);
+
 	ENGINE_LEFT_I1_DDR |= _BV(ENGINE_LEFT_I1_PIN);
 	ENGINE_LEFT_I2_DDR |= _BV(ENGINE_LEFT_I2_PIN);
 	ENGINE_RIGHT_I1_DDR |= _BV(ENGINE_RIGHT_I1_PIN);
 	ENGINE_RIGHT_I2_DDR |= _BV(ENGINE_RIGHT_I2_PIN);
+	engine_stop_all();
 }
 
 void engine_stop(uint8_t engine) {
@@ -85,3 +94,12 @@ void engine_backward(uint8_t engine) {
 inline void engine_stop_all() {
 	engine_stop(ENGINE_LEFT | ENGINE_RIGHT);
 }
+
+void engine_set_speed(uint8_t speed) {
+	OCR2 = (uint8_t)map(speed, 0, 100, 0, 255);
+}
+
+uint8_t engine_get_speed() {
+	return (uint8_t)map(OCR2, 0, 255, 0, 100);
+}
+

@@ -53,12 +53,12 @@ void engine_stop(uint8_t engine);
 void engine_stop_all();
 
 /** Set engines speed
- * @param speed value from 0 to 255
+ * @param speed value from 0 to 100
  */
 void engine_set_speed(uint8_t speed);
 
 /** Get current engine speed
- * @return current engine speed (0 to 255)
+ * @return current engine speed (0 to 100)
  */
 uint8_t engine_get_speed();
 

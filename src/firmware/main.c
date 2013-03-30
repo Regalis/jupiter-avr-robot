@@ -32,15 +32,17 @@
 #include "engines.h"
 
 int main() {
-	char *buffer = (char*)calloc(100, sizeof(char));
+	engine_init();
 	servo_init();
+	servo_set(SERVO1, 90);
+	servo_set(SERVO2, 85);
 	serial_init(9600);
 	serial_println("Hello, I'm Jupiter");
 	ultrasonic_init();
-	engine_init();
 	sei();
 	_delay_ms(1000);
 	while (1) {
+		engine_set_speed(50);
 		engine_forward(ENGINE_LEFT | ENGINE_RIGHT);
 		_delay_ms(3000);
 		engine_stop_all();
@@ -67,5 +69,27 @@ int main() {
 		_delay_ms(3000);
 		engine_stop_all();
 		_delay_ms(500);
+
+		_delay_ms(3000);
+		engine_forward(ENGINE_LEFT | ENGINE_RIGHT);
+		engine_set_speed(0);
+		_delay_ms(3000);
+		engine_set_speed(20);
+		_delay_ms(3000);
+		engine_set_speed(40);
+
+		engine_backward(ENGINE_LEFT);
+		_delay_ms(3000);
+		engine_forward(ENGINE_LEFT);
+
+		_delay_ms(3000);
+		engine_set_speed(25);
+		_delay_ms(3000);
+		engine_set_speed(100);
+		_delay_ms(3000);
+		engine_set_speed(25);
+		_delay_ms(3000);
+		engine_set_speed(100);
+		_delay_ms(3000);
 	}
 }
