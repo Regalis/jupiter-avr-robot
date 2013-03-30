@@ -1,3 +1,9 @@
+# Intel Hex files
+*.hex
+# ELF
+*.elf
+# Vim
 *.swp
 *.swo
-*~
+# C objects
+*.o
